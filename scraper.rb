@@ -33,4 +33,10 @@ def fetch_info(names)
   end
 end
 
-fetch_info wikinames_from('https://en.wikipedia.org/wiki/List_of_House_members_of_the_41st_Parliament_of_Canada')
+names = wikinames_from('https://en.wikipedia.org/wiki/List_of_House_members_of_the_42nd_Parliament_of_Canada') +
+  wikinames_from('https://en.wikipedia.org/wiki/List_of_House_members_of_the_41st_Parliament_of_Canada')
+
+fetch_info names.uniq
+
+warn RestClient.post ENV['MORPH_REBUILDER_URL'], {} if ENV['MORPH_REBUILDER_URL']
+
