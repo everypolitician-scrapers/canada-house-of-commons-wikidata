@@ -15,7 +15,6 @@ parl41 = EveryPolitician::Wikidata.wikipedia_xpath(
   xpath: '//table[.//tr[th[.="Electoral district"]]]//tr[td]//td[2]//a[not(@class="new")]/@title',
 ) 
 
-names = (parl41 + parl42).uniq
-EveryPolitician::Wikidata.scrape_wikidata(names: { en: names })
+EveryPolitician::Wikidata.scrape_wikidata(names: { en: parl41 | parl42 })
 warn EveryPolitician::Wikidata.notify_rebuilder
 
